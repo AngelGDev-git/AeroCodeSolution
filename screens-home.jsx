@@ -3,7 +3,7 @@ const { useState } = React;
 
 // ── HomeScreen ────────────────────────────────────────────────────────────────
 function HomeScreen({ navigate, user }) {
-  const ciudades = ['Ciudad de México','Guadalajara','Monterrey','Cancún','Los Ángeles','Madrid','Miami','Nueva York'];
+  const ciudades = ['Ciudad de México','Guadalajara','Monterrey','Cancún','Los Ángeles','Madrid','Miami','Nueva York','Santo Domingo'];
   const [form, setForm] = useState({ origen:'', destino:'', fecha:'', pasajeros:1, tipo:'ida' });
   const [error, setError] = useState('');
 
