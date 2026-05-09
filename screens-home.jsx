@@ -15,7 +15,7 @@ function HomeScreen({ navigate, user }) {
   }
 
   const destinos = [
-    { ciudad:'Cancún', pais:'México', precio:'desde $3,200', emoji:'🏖️' },
+    { ciudad:'Miamia', pais:'EE.UU', precio:'desde $15,000', emoji:'🏖️' },
     { ciudad:'Madrid', pais:'España', precio:'desde $12,500', emoji:'🏛️' },
     { ciudad:'Los Ángeles', pais:'EE.UU.', precio:'desde $5,800', emoji:'🎬' },
     { ciudad:'Guadalajara', pais:'México', precio:'desde $1,850', emoji:'🌮' },
@@ -192,12 +192,15 @@ function LoginScreen({ navigate, onLogin }) {
 
 // ── RegistroScreen ────────────────────────────────────────────────────────────
 function RegistroScreen({ navigate, onLogin }) {
-  const [form, setForm] = useState({ nombre:'', email:'', contraseña:'', confirmar:'', tipoCliente:'minorista' });
+  const [form, setForm] = useState({ nombre:'',direccion:'',compania:'',telefono:'', email:'', contraseña:'', confirmar:'', tipoCliente:'minorista' });
   const [errors, setErrors] = useState({});
 
   function validar() {
     const e = {};
     if (!form.nombre.trim()) e.nombre = 'El nombre es requerido';
+     if (!form.direccion.trim()) e.direccion = 'La dirección es requerida';
+      if (!form.compania.trim()) e.compania = 'La compañia es requerida';
+       if (!form.telefono.trim()) e.telefono = 'El telefono es requerido';
     if (!form.email.includes('@')) e.email = 'Email inválido';
     if (form.contraseña.length < 6) e.contraseña = 'Mínimo 6 caracteres';
     if (form.contraseña !== form.confirmar) e.confirmar = 'Las contraseñas no coinciden';
@@ -208,7 +211,7 @@ function RegistroScreen({ navigate, onLogin }) {
   function handleRegistro() {
     const e = validar();
     if (Object.keys(e).length) { setErrors(e); return; }
-    const nuevo = AppData.addUsuario({ nombre:form.nombre, email:form.email, contraseña:form.contraseña, rol:'cliente', tipoCliente:form.tipoCliente, millas:0, activo:true });
+    const nuevo = AppData.addUsuario({ nombre:form.nombre, direccion:form.direccion,compania:form.compania,telefono:form.telefono, email:form.email, contraseña:form.contraseña, rol:'cliente', tipoCliente:form.tipoCliente, millas:0, activo:true });
     onLogin(nuevo);
     navigate('home');
   }
@@ -225,6 +228,9 @@ function RegistroScreen({ navigate, onLogin }) {
         <Card>
           <div style={{ display:'flex', flexDirection:'column', gap:16 }}>
             <Input label="Nombre completo" value={form.nombre} onChange={e=>setForm({...form,nombre:e.target.value})} placeholder="María García" error={errors.nombre} />
+            <Input label="Dirección" value={form.direccion} onChange={e=>setForm({...form,direccion:e.target.value})} placeholder="Calle" error={errors.direccion} />
+            <Input label="Compañia" value={form.compania} onChange={e=>setForm({...form,compania:e.target.value})} placeholder="Mi compañia RD" error={errors.compania} />
+           <Input label="Teléfono" value={form.telefono} onChange={e=>setForm({...form,telefono:e.target.value})} placeholder="809-000-0000" error={errors.telefono} />
             <Input label="Correo electrónico" type="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})} placeholder="tu@email.com" error={errors.email} />
             <Input label="Contraseña" type="password" value={form.contraseña} onChange={e=>setForm({...form,contraseña:e.target.value})} placeholder="Mínimo 6 caracteres" error={errors.contraseña} />
             <Input label="Confirmar contraseña" type="password" value={form.confirmar} onChange={e=>setForm({...form,confirmar:e.target.value})} placeholder="Repite tu contraseña" error={errors.confirmar} />
