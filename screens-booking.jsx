@@ -274,20 +274,32 @@ function AsientosScreen({ navigate, screenData, user }) {
 // ── PagoScreen ────────────────────────────────────────────────────────────────
 function PagoScreen({ navigate, screenData, user }) {
   const { vuelo, asiento, busqueda } = screenData || {};
-  const precioBase = vuelo?.precio || 0;
+
+  // ✅ 1. Estado de millas PRIMERO
+  const [millasAplicar, setMillasAplicar] = useState(0);
+
+  // ✅ 2. Cálculos base (asegurando números)
+  const precioBase = Number(vuelo?.precio || 0);
   const extras = asiento?.clase === 'business' ? 2000 : 0;
   const impuestos = Math.round((precioBase + extras) * 0.16);
   const subtotal = precioBase + extras + impuestos;
+
+  // ✅ 3. Descuento ya definido
+  const descuentoMillas = AppData.millasADescuento(millasAplicar);
+
+  // ✅ 4. Total FINAL (ya no da NaN)
   const total = Math.max(0, subtotal - descuentoMillas);
 
+  // ⬇️ TODO lo demás queda igual
   const [metodo, setMetodo] = useState('tarjeta');
-  const [form, setForm] = useState({ titular:'', numero:'', vence:'', cvv:'', banco:'', referencia:'' });
+  const [form, setForm] = useState({
+    titular:'', numero:'', vence:'', cvv:'', banco:'', referencia:''
+  });
   const [errores, setErrores] = useState({});
   const [procesando, setProcesando] = useState(false);
+
   const esCorporativo = user?.tipoCliente === 'corporativo';
   const millasDisponibles = user?.millas || 0;
-  const [millasAplicar, setMillasAplicar] = useState(0);
-  const descuentoMillas = AppData.millasADescuento(millasAplicar);
 
   function validar() {
     const e = {};
