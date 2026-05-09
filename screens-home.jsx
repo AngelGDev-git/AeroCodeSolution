@@ -15,7 +15,7 @@ function HomeScreen({ navigate, user }) {
   }
 
   const destinos = [
-    { ciudad:'Miamia', pais:'EE.UU', precio:'desde $15,000', emoji:'🏖️' },
+    { ciudad:'Miami', pais:'EE.UU', precio:'desde $15,000', emoji:'🏖️' },
     { ciudad:'Madrid', pais:'España', precio:'desde $12,500', emoji:'🏛️' },
     { ciudad:'Los Ángeles', pais:'EE.UU.', precio:'desde $5,800', emoji:'🎬' },
     { ciudad:'Guadalajara', pais:'México', precio:'desde $1,850', emoji:'🌮' },
