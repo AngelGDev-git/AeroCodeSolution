@@ -84,7 +84,7 @@ function ResultadosScreen({ navigate, screenData, user }) {
                     <div style={{ display:'grid', gridTemplateColumns:'1fr auto', gap:0 }}>
                       <div style={{ padding:'20px 24px' }}>
                         <div style={{ display:'flex', alignItems:'center', gap:6, marginBottom:16 }}>
-                          <span style={{ fontSize:12, fontWeight:700, color:'#1E6FD9', letterSpacing:'0.5px' }}>AeroLinea MX</span>
+                          <span style={{ fontSize:12, fontWeight:700, color:'#1E6FD9', letterSpacing:'0.5px' }}>Aeropuerto Internacional de las Americas</span>
                           <span style={{ fontSize:11, color:'#9CA3AF' }}>• Vuelo #{v.idVuelo.toString().padStart(3,'0')}</span>
                         </div>
                         <div style={{ display:'flex', alignItems:'center', gap:24 }}>
@@ -370,9 +370,9 @@ function PagoScreen({ navigate, screenData, user }) {
             <Card>
               <h3 style={{ margin:'0 0 16px', fontSize:16, fontWeight:700, color:'#0D1B2A' }}>Datos de transferencia</h3>
               <div style={{ background:'#F5F7FA', borderRadius:10, padding:16, fontSize:14, color:'#4A5568', lineHeight:1.8, marginBottom:16 }}>
-                <div><strong>Banco:</strong> Banorte</div>
-                <div><strong>CLABE:</strong> 0721 8000 1234 5678 90</div>
-                <div><strong>Beneficiario:</strong> AeroLinea MX S.A. de C.V.</div>
+                <div><strong>Banco:</strong> Banco Popular Dominicano</div>
+                <div><strong>Numero Cuenta:</strong> 0721 8000 1234 5678 90</div>
+                <div><strong>Beneficiario:</strong> Aeropuerto Internacional de las Americas</div>
                 <div><strong>Referencia:</strong> Tu correo electrónico</div>
               </div>
               <Input label="Tu banco de origen" value={form.banco} onChange={e=>setForm({...form,banco:e.target.value})} placeholder="Nombre de tu banco" />
